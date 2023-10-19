@@ -44,9 +44,9 @@ require (
 	k8s.io/api v0.0.0-20231016230927-b01b44926aa4
 	k8s.io/apimachinery v0.0.0-20231016230655-a1b8da8152f9
 	k8s.io/client-go v0.0.0-20231016231308-435ce6f2a8ef
-	k8s.io/component-base v0.0.0-20231016231942-6aa55648c840
+	k8s.io/component-base v0.0.0-00010101000000-000000000000
 	k8s.io/klog/v2 v2.100.1
-	k8s.io/kms v0.0.0-20231016232213-86dc11279675
+	k8s.io/kms v0.0.0-00010101000000-000000000000
 	k8s.io/kube-openapi v0.0.0-20231009201959-f62364c3c354
 	k8s.io/utils v0.0.0-20230726121419-3b25d923346b
 	sigs.k8s.io/apiserver-network-proxy/konnectivity-client v0.28.0
