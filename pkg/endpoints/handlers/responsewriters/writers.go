@@ -119,7 +119,7 @@ func SerializeObject(mediaType string, encoder runtime.Encoder, hw http.Response
 	}
 
 	// make a best effort to write the object if a failure is detected
-	if err.Error() != "http2: stream closed" {
+	if !strings.Contains(strings.ToLower(err.Error()), "http") && !strings.Contains(strings.ToLower(err.Error()), "handler") {
 		utilruntime.HandleError(fmt.Errorf("apiserver was unable to write a JSON response: %v", err))
 	}
 	status := ErrorToAPIStatus(err)
@@ -133,7 +133,7 @@ func SerializeObject(mediaType string, encoder runtime.Encoder, hw http.Response
 		w.mediaType = "text/plain"
 		output = []byte(fmt.Sprintf("%s: %s", status.Reason, status.Message))
 	}
-	if _, err := w.Write(output); err != nil && err.Error() != "http2: stream closed" {
+	if _, err := w.Write(output); err != nil && !strings.Contains(strings.ToLower(err.Error()), "http") && !strings.Contains(strings.ToLower(err.Error()), "handler") {
 		utilruntime.HandleError(fmt.Errorf("apiserver was unable to write a fallback JSON response: %v", err))
 	}
 	w.Close()

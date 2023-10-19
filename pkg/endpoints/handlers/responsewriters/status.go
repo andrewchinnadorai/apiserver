@@ -19,6 +19,7 @@ package responsewriters
 import (
 	"fmt"
 	"net/http"
+	"strings"
 
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/util/runtime"
@@ -68,7 +69,7 @@ func ErrorToAPIStatus(err error) *metav1.Status {
 		// by REST storage - these typically indicate programmer
 		// error by not using pkg/api/errors, or unexpected failure
 		// cases.
-		if err.Error() != "http2: stream closed" {
+		if !strings.Contains(strings.ToLower(err.Error()), "http") && !strings.Contains(strings.ToLower(err.Error()), "handler")  {
 			runtime.HandleError(fmt.Errorf("apiserver received an error that is not an metav1.Status: %#+v: %v", err, err))
 		}
 		return &metav1.Status{
