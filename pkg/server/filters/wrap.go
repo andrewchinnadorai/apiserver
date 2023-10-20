@@ -17,7 +17,6 @@ limitations under the License.
 package filters
 
 import (
-	"fmt"
 	"net/http"
 
 	"k8s.io/apimachinery/pkg/util/runtime"
